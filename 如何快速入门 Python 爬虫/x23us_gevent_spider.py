@@ -86,7 +86,6 @@ class MySQLOperator:
         :param item:
         :return:
         """
-        return
         # 在item_dict中查找是否有table_name这个键，如果没有，就创建，指向的value为一个空list
         # 将采集到的一条数据加入到item_dict[table_name]指向的list中
         self.item_dict.setdefault(table_name, []).append(item)
