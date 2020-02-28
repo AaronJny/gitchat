@@ -103,7 +103,7 @@ class X23usSpider:
 
     def __init__(self):
         # 列表页url模板
-        self.list_page_url_format = 'https://www.x23us.com/quanben/{page}'
+        self.list_page_url_format = 'https://www.ydshu.com/quanben/{page}'
         # 要采集的总页数
         self.total_page = 1
         # 数据库操作器，用来保存数据到数据库
@@ -153,7 +153,7 @@ class X23usSpider:
         headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-            'Referer': 'https://www.x23us.com/quanben/1',
+            'Referer': self.list_page_url_format.format(page=1),
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.9',
         }
@@ -168,7 +168,7 @@ class X23usSpider:
             # 开始解析章节信息
             # 解析章节地址
             chapter_url_short = chapter_tag.get('href')
-            # urljoin('https://www.x23us.com/html/76/76609/','34183392.html')=='https://www.x23us.com/html/76/76609/34183392.html'
+            # urljoin('https://www.ydshu.com/html/76/76609/','34183392.html')=='https://www.ydshu.com/html/76/76609/34183392.html'
             chapter_url = urljoin(novel_url, chapter_url_short)
             # 解析章节id
             chapter_id = chapter_url_short.split('.')[0]
@@ -202,7 +202,7 @@ class X23usSpider:
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
             # Referer表明你是从哪个页面跳转过来的，是用于防盗链的一种手段，有时也会被用于反爬虫
-            'Referer': 'https://www.x23us.com/quanben/',
+            'Referer': self.list_page_url_format.format(page=''),
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.9'
         }
